@@ -22,6 +22,26 @@ var gameProperties = {
     scoreToWin: 11,
 };
 
+var util = require("util"),
+    io = require("socket.io");
+
+var socket,
+    players;
+
+    function init() {
+      players = [];
+      socket = io.listen(8080);
+      socket.configure(function () {
+        socket.set("transports", ["websocket"]);
+        socket.set("log level", 2);
+        setEventHandlers();
+      });
+    };
+
+
+
+    init();
+
 var graphicAssets = {
     ballURL: 'assets/ball.png',
     ballName: 'ball',
